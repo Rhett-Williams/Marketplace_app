@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Display name:</strong>
+  <%= @request.display_name %>
+</p>
+
+<p>
+  <strong>Reason:</strong>
+  <%= @request.reason %>
+</p>
+
+<p>
+  <strong>Dollar amount:</strong>
+  <%= @request.dollar_amount %>
+</p>
+
+<p>
+<% if @request.image.attached? %>
+<strong>Image:</strong>
+    <%= image_tag(@request.image, style: "width: 200px; display: block")%>
+    <% end %>
+</p>
+
+<%= link_to 'Edit', edit_request_path(@request), class:"btn btn-dark" %> |
+<%= link_to 'Back', requests_path, class:"btn btn-dark" %>

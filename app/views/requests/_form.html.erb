@@ -1,0 +1,45 @@
+<%= form_with(model: request) do |form| %>
+  <% if request.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(request.errors.count, "error") %> prohibited this request from being saved:</h2>
+
+      <ul>
+        <% request.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :display_name %>
+    <%= form.text_field :display_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :reason %>
+    <%= form.text_field :reason %>
+  </div>
+
+  <div>
+  <% if request.image.attached? %>
+    <%= image_tag(request.image, style: "width: 200px; display: block")%>
+    <% end %>
+  
+  <%= form.label :image %>
+  <%= form.file_field :image, class:"form-control" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :dollar_amount %>
+    <%= form.number_field :dollar_amount %>
+  </div>
+
+  <div class="field">
+    <%= form.number_field :user_id, id: :request_user_id, class:"form-control", value: current_user.id, type: :hidden %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
