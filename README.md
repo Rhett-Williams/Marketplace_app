@@ -68,6 +68,7 @@ currently, there are websites that allow you to do this but can often take a hef
     - Stripe
     - Heroku
     - Github
+    - Trello
     - Digital Ocean
 # Describe your projects models in terms of the relationships (active record associations) they have with each other
 # Discuss the database relations to be implemented in your application
@@ -76,6 +77,10 @@ currently, there are websites that allow you to do this but can often take a hef
         - The user accounts will be able to create multiple requests
         - The user account will have a name, email, user id, password
         - The user will be able to edit and delete their own accounts but will not be able to manipulate other user's accounts
+ - Admin:
+    User account
+      - has the ability to edit and destroy other user's requests
+      - has the ability to destroy other user accounts
  - Requests:
     belongs_to :user
     has_one_attached :image
@@ -240,3 +245,8 @@ ActiveRecord::Schema.define(version: 2021_12_02_022144) do
   add_foreign_key "pay_payment_methods", "pay_customers", column: "customer_id"
   add_foreign_key "pay_subscriptions", "pay_customers", column: "customer_id"
 end
+
+# logins
+ - admin:
+    email: admin@admin.com
+    password: admin@admin.com
