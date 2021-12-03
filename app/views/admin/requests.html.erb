@@ -1,0 +1,39 @@
+<% if !notice.nil? %>
+    <div class="alert alert-primary" role="alert">
+    <%= notice %>
+    </div>
+<% end %>
+
+<h1 class="mt-5">Requests</h1>
+
+<table class="table table-dark">
+  <thead>
+    <tr>
+    <th>User ID</th>
+      <th>Display name</th>
+      <th>Reason</th>
+      <th>Dollar amount</th>
+      <th>Image</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @requests.each do |request| %>
+      <tr>
+      <td><%= request.user_id %></td>
+        <td><%= request.display_name %></td>
+        <td><%= request.reason %></td>
+        <td><%= request.dollar_amount %></td>
+        <td>
+          <% if request.image.attached? %>
+    <%= image_tag(request.image, style: "width: 200px; display: block") %>
+    <% end %>
+        </td>
+        <td><%= link_to "Show", request_path(request.id) %></td>
+        <td><%= button_to "Delete", "#{admin_requests_path}/#{request.id}", method: :delete, class: "btn btn-danger" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+

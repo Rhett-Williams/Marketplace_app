@@ -1,0 +1,17 @@
+
+    <div class="container">
+        <div class="alert alert-success" role="alert">
+            Payment Successfull, thank you!
+        </div>
+        <div class="m-auto">
+            <div class="card" style="width: 18rem;">
+                <%= image_tag @request.image, class: "card-img-top" %>
+                <div class="card-body">
+                    <h5 class="card-title"><%= @request.display_name %></h5>
+                    <p class="card-text"><%= @request.reason %></p>
+                    <%= link_to 'Go to the request', request_path(@request), class:"btn btn-success" %>
+                </div>
+            </div>
+        </div>
+    </div>
+

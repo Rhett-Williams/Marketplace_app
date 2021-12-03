@@ -61,3 +61,14 @@ gem 'omniauth', '~> 1.9'
 gem 'omniauth-stripe-connect'
 
 gem 'pg'
+
+gem 'pay', '~> 3.0'
+
+# To use Braintree + PayPal, also include:
+gem 'braintree', '>= 4.4', '< 5.0'
+
+# To use Paddle, also include:
+gem 'paddle_pay', '~> 0.1'
+
+# To use Receipts
+gem 'receipts', '~> 1.1'

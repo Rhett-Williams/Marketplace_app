@@ -22,5 +22,17 @@
     <% end %>
 </p>
 
+<% if user_signed_in? %>
+  <button data-stripe="payment" class="btn btn-success">Donate <%= number_to_currency(@request.dollar_amount)%></button>
+<% end %>
 <%= link_to 'Edit', edit_request_path(@request), class:"btn btn-dark" %> |
 <%= link_to 'Back', requests_path, class:"btn btn-dark" %>
+
+<script>
+  document.querySelector("[data-stripe='payment']").addEventListener("click", () => {
+    const stripe = Stripe("<%= Rails.application.credentials.dig(:stripe, :public_key) %>");
+    stripe.redirectToCheckout({
+      sessionId: "<%= @session_id %>"
+    });
+  });
+</script>

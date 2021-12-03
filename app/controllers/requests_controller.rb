@@ -9,6 +9,29 @@ class RequestsController < ApplicationController
 
   # GET /requests/1 or /requests/1.json
   def show
+    
+    Stripe.api_key = Rails.application.credentials.dig(:stripe, :secret_key)
+    session = Stripe::Checkout::Session.create(
+      payment_method_types: ['card'],
+      customer_email: current_user.email,
+      line_items: [{
+        name: @request.display_name,
+        description: @request.reason,
+        images: [url_for(@request.image)],
+        amount: @request.dollar_amount,
+        currency: 'aud',
+        quantity: 1,
+      }],
+      payment_intent_data: {
+        metadata: {
+          request_id: @request.id,
+          user_id: current_user.id
+        }
+      },
+        success_url: "#{root_url}payment/success/#{@request.id}",
+        cancel_url: "#{root_url}payment/cancel/#{@request.id}"
+    )
+    @session_id = session.id
   end
 
   # GET /requests/new
@@ -36,6 +59,7 @@ class RequestsController < ApplicationController
       end
     end
   end
+
 
   # PATCH/PUT /requests/1 or /requests/1.json
   def update
