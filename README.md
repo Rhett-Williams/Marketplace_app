@@ -2,7 +2,7 @@
 
 # README
 
-# Github link: https://github.com/Rhett-Williams/marketplacerevert
+# Github link: https://github.com/Rhett-Williams/Marketplace_app.git
 
 
 # Heroku link: https://givememoney.herokuapp.com/
@@ -58,7 +58,7 @@ currently, there are websites that allow you to do this but can often take a hef
         - I wantto be able to edit and delete my profile
 # Wireframes for your app
   Wireframes in Photos Folder
-  
+
 # An ERD for your app
 
 # Explain the different high-level components (abstractions) in your app
